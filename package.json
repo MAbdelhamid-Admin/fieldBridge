@@ -18,6 +18,14 @@
     "flexray"
   ],
   "author": "Mohamed Mahmoud <imohamed.abdelhamed@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MAbdelhamid-Admin/fieldBridge.git"
+  },
+  "homepage": "https://github.com/MAbdelhamid-Admin/fieldBridge#readme",
+  "bugs": {
+    "url": "https://github.com/MAbdelhamid-Admin/fieldBridge/issues"
+  },
   "license": "MIT",
   "type": "module",
   "main": "./dist/index.js",
