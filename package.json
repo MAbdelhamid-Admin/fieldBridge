@@ -1,0 +1,56 @@
+{
+  "name": "fieldbridge",
+  "version": "0.1.0",
+  "description": "Validated, raw-frame-preserving conversion between industrial and automotive protocols (Modbus, PROFIBUS, PROFINET, EtherCAT, CAN, LIN, FlexRay, Ethernet)",
+  "keywords": [
+    "industrial",
+    "fieldbus",
+    "protocol",
+    "converter",
+    "gateway",
+    "modbus",
+    "profibus",
+    "profinet",
+    "ethercat",
+    "can",
+    "can-fd",
+    "lin",
+    "flexray"
+  ],
+  "author": "Mohamed Mahmoud <imohamed.abdelhamed@gmail.com>",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./wire": {
+      "types": "./dist/wire/index.d.ts",
+      "import": "./dist/wire/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json",
+    "test": "vitest run",
+    "example": "tsx examples/basic.ts && tsx examples/wire.ts",
+    "prepublishOnly": "npm run typecheck && npm test && npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  }
+}
