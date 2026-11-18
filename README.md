@@ -294,8 +294,7 @@ the complete captures were checked:
   and frames that are deliberately malformed.
 - **560,000+ CAN frames** from a J1939 truck and five EVs (Nissan Leaf,
   BMW i3, Ford Mustang Mach-E, Porsche Taycan, Dacia Spring), taken from
-  public logs. All were parsed correctly; the only rejections were two lines
-  that are damaged in the source log.
+  public logs.
 
 No public CAN FD capture was available, so CAN FD is covered by the tests
 built from the specification.
