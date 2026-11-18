@@ -1,6 +1,7 @@
 # fieldbridge
 
 [![CI](https://github.com/MAbdelhamid-Admin/fieldBridge/actions/workflows/ci.yml/badge.svg)](https://github.com/MAbdelhamid-Admin/fieldBridge/actions/workflows/ci.yml)
+[![npm version](https://img.shields.io/npm/v/fieldbridge.svg)](https://www.npmjs.com/package/fieldbridge)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 Validated conversion of **frame envelopes** between industrial and automotive
@@ -15,6 +16,8 @@ LIN, FlexRay and EtherCAT.
 - Zero runtime dependencies, ESM, TypeScript types included, Node.js 20+
 
 ## Install
+
+Published on npm: [`fieldbridge`](https://www.npmjs.com/package/fieldbridge).
 
 ```bash
 npm install fieldbridge
