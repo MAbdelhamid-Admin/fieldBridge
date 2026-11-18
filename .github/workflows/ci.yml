@@ -1,0 +1,76 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Test (Node ${{ matrix.node }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [20.x, 22.x, 24.x]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run build
+      - run: npm run example
+
+  package:
+    name: Package smoke test
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24.x
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - name: Pack
+        run: npm pack --pack-destination "$RUNNER_TEMP"
+      - name: Install the tarball in an empty project and use both entry points
+        working-directory: ${{ runner.temp }}
+        run: |
+          mkdir consumer && cd consumer
+          npm init -y > /dev/null
+          npm pkg set type=module
+          npm install ../fieldbridge-*.tgz --no-audit --no-fund
+          cat > smoke.mjs <<'EOF'
+          import { convertFrame, FieldbridgeError } from "fieldbridge";
+          import { parse, serialize } from "fieldbridge/wire";
+
+          const [rtu] = parse("modbus-rtu", [0x11, 0x03, 0x00, 0x6b, 0x00, 0x03, 0x76, 0x87]);
+          const { frame } = convertFrame({ source: rtu, targetProtocol: "modbus-tcp", options: { metadata: { transactionId: 1 } } });
+          const hex = Array.from(serialize(frame), (b) => b.toString(16).padStart(2, "0")).join(" ");
+          if (hex !== "00 01 00 00 00 06 11 03 00 6b 00 03") throw new Error(`unexpected bytes: ${hex}`);
+
+          try {
+            parse("modbus-rtu", [0x11, 0x03, 0x00, 0x6b, 0x00, 0x03, 0x76, 0x88]);
+            throw new Error("CRC error not detected");
+          } catch (error) {
+            if (!(error instanceof FieldbridgeError) || error.code !== "CHECKSUM_MISMATCH") throw error;
+          }
+          console.log("Package smoke test passed:", hex);
+          EOF
+          node smoke.mjs
+      - name: Check published file list
+        run: npm pack --dry-run 2>&1 | tee pack.txt && ! grep -E "src/|tests/|examples/" pack.txt

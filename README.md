@@ -1,5 +1,8 @@
 # fieldbridge
 
+[![CI](https://github.com/MAbdelhamid-Admin/fieldBridge/actions/workflows/ci.yml/badge.svg)](https://github.com/MAbdelhamid-Admin/fieldBridge/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
 Validated conversion of **frame envelopes** between industrial and automotive
 protocols: Ethernet, PROFINET, PROFIBUS DP/PA, Modbus RTU/TCP, CAN / CAN FD,
 LIN, FlexRay and EtherCAT.
