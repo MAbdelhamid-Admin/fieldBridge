@@ -254,7 +254,12 @@ npm test           # run the test suite
 npm run typecheck  # type-check src, tests and examples
 npm run build      # emit JavaScript and declarations into dist/
 npm run example    # run the examples
+npm run docs       # generate the API documentation site into site/
 ```
+
+The documentation site is published to GitHub Pages by
+`.github/workflows/docs.yml` on every push to `main`. That happens only
+while the repository is public and Pages is set to the "GitHub Actions" source.
 
 Project layout:
 

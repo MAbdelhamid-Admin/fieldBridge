@@ -1,0 +1,20 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "name": "fieldbridge",
+  "entryPoints": ["src/index.ts", "src/wire/index.ts"],
+  "tsconfig": "tsconfig.build.json",
+  "readme": "README.md",
+  "out": "site",
+  "includeVersion": true,
+  "excludePrivate": true,
+  "excludeInternal": true,
+  "sort": ["kind", "source-order"],
+  "navigationLinks": {
+    "GitHub": "https://github.com/MAbdelhamid-Admin/fieldBridge"
+  },
+  "validation": {
+    "notExported": true,
+    "invalidLink": true,
+    "notDocumented": false
+  }
+}

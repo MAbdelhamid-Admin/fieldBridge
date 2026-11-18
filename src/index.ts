@@ -1,3 +1,12 @@
+/**
+ * Validated conversion of frame envelopes between industrial and automotive protocols.
+ *
+ * Start with {@link convertFrame} or {@link convertMessage}; use {@link tryConvertFrame} /
+ * {@link tryConvertMessage} for a non-throwing API and {@link createConverter} for custom adapters.
+ * For raw bytes, see the `fieldbridge/wire` entry point.
+ *
+ * @module fieldbridge
+ */
 export * from "./core/types.js";
 export { FieldbridgeError, isFieldbridgeError, type FieldbridgeErrorCode, type FieldbridgeErrorDetails } from "./core/errors.js";
 export { toResult, type Result } from "./core/result.js";

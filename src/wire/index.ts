@@ -8,6 +8,8 @@
  *
  * LIN, FlexRay and PROFIBUS byte formats depend on the interface hardware and
  * are not supported yet; `parse` / `serialize` report UNSUPPORTED_FEATURE.
+ *
+ * @module fieldbridge/wire
  */
 import { FieldbridgeError } from "../core/errors.js";
 import type { NormalizedFrame, Protocol } from "../core/types.js";
