@@ -53,13 +53,11 @@
     "typecheck": "tsc -p tsconfig.json",
     "test": "vitest run",
     "example": "tsx examples/basic.ts && tsx examples/wire.ts",
-    "docs": "typedoc",
     "prepublishOnly": "npm run typecheck && npm test && npm run build"
   },
   "devDependencies": {
     "@types/node": "^22.10.2",
     "tsx": "^4.19.2",
-    "typedoc": "^0.28.20",
     "typescript": "^5.7.2",
     "vitest": "^2.1.8"
   }
